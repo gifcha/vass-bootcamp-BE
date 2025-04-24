@@ -25,15 +25,15 @@ public class TaskManagerBackendApplication {
 		@RequestParam(value = "title") String title,
 		@RequestParam(value = "desc") String desc,
 		@RequestParam(value = "status") String status,
-		@RequestParam(value = "type") String type )
-		{
-			return db.addTask(title, desc, status, type);
-		}
+		@RequestParam(value = "type") String type
+	) {
+		return db.addTask(title, desc, status, type);
+	}
 
 	@GetMapping("/get-task-list")
 	public String[] getTaskList() {
-			return db.getTaskList();
-		}
+		return db.getTaskList();
+	}
 
 
 	@GetMapping("/delete-task")

@@ -27,22 +27,6 @@ public class Database {
 		}
 	}
 
-	String ResultSetToJsonString(ResultSet set) {
-		try {
-			String result = "{\"id\": \""+set.getString(1) + "\"," +
-			"\"title\": \""+set.getString(2) + "\"," +
-			"\"desc\": \""+set.getString(3) + "\"," +
-			"\"status\": \""+set.getString(4) + "\"," +
-			"\"type\": \""+set.getString(5) + "\"," +
-			"\"createdOn\": \""+set.getString(6) + "\"}";
-
-			return result;
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
-			return "";
-		}
-	}
-
 	// returns amount of inserted rows or -1 if failed
 	public int addTask(String title, String desc, String type, String status) {
 		String query = "INSERT INTO tasks (title, description, status, type) VALUES(?, ?, ?, ?);";
@@ -60,21 +44,21 @@ public class Database {
 	}
 
 	public String[] getTaskList() {
-		String query = "SELECT * FROM tasks;";
+		String query = "SELECT row_to_json(tasks) FROM tasks;"; // each row is converted to json
 		try {
 			Statement statement = connection.createStatement();
 			ResultSet res = statement.executeQuery(query);
 			
 			ArrayList<String> list = new ArrayList<>();
 			while (res.next() == true) {
-				String jsonStr = ResultSetToJsonString(res);
+				String jsonStr = res.getString(1);
 				list.add(jsonStr);
 			}
 
-			String[] result = new String[list.size()];
-			list.toArray(result);
+			String resArr[] = new String[list.size()];
+			list.toArray(resArr);
+			return resArr;
 
-			return result;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return new String[0];
