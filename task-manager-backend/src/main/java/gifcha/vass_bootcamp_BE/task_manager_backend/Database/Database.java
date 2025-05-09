@@ -1,4 +1,4 @@
-package gifcha.vass_bootcamp_BE.task_manager_backend;
+package gifcha.vass_bootcamp_BE.task_manager_backend.Database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,12 +8,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+
 public class Database {
 	String jdbcUrl;
 	Connection connection;
 
 	public Database(String dbName, String username, String password) {
-		this.jdbcUrl = "jdbc:postgresql://localhost:5432/"+dbName+"?currentSchema=public&user="+username+"&password=admin";
+		this.jdbcUrl = "jdbc:postgresql://localhost:5432/"+dbName+"?currentSchema=public&user="+username+"&password="+password;
 
 		// Connect to the database
 		try {
@@ -22,7 +23,7 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());
-			System.out.println("Failed to connect to db!");
+			System.err.println("Failed to connect to db!");
 			System.exit(1);
 		}
 	}
