@@ -2,32 +2,37 @@ package gifcha.vass_bootcamp_BE.task_manager_backend.Task;
 
 import java.util.List;
 import java.util.UUID;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public interface TaskService {
-    /**
-     * Saves a task entity.
-     * @param task the task to save
-     * @return the savedtask 
-     */
-    Task saveTask(Task task);
+@Service
+public class TaskService {
+	@Autowired
+	private TaskRepository taskRepository;
 
-    /**
-     * Fetches the list of all task entities.
-     * @return a list oftask 
-     */
-    List<Task> fetchTaskList();
+    Task addTask(Task task) {
+        return taskRepository.save(task);
+	}
 
-    /**
-     * Updates an existing task entity.
-     * @param task the task with updated information
-     * @param taskId the ID of the task to update
-     * @return the updatedtask 
-     */
-    Task updateTask(Task task, UUID taskId);
+    List<Task> getTaskList() {
+        return taskRepository.findAll();
+	}
 
-    /**
-      Deletes a task entity by its ID.
-      @param taskID the ID of the task to delete
-     */
-    void deleteTaskById(UUID taskID);
+	Task getTaskById(UUID id) {
+        return taskRepository.findById(id).orElseThrow();
+	}
+
+    Task updateTask(UUID id, Task updatedTask) {
+        Task task = taskRepository.findById(id).orElseThrow();
+        task.setTitle(updatedTask.getTitle());
+        task.setDescription(updatedTask.getDescription());
+        task.setStatus(updatedTask.getStatus());
+        task.setType(updatedTask.getType());
+        task.setCreatedon(updatedTask.getCreatedon());
+        return taskRepository.save(task);
+	}
+
+    void deleteTaskById(UUID id) {
+        taskRepository.deleteById(id);
+	}
 }

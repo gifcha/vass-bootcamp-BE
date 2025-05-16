@@ -33,3 +33,4 @@ build/
 .vscode/
 packrun.sh
 bin/
+src/main/resources/application.properties

@@ -3,8 +3,6 @@ package gifcha.vass_bootcamp_BE.task_manager_backend.Task;
 import java.util.Date;
 import java.util.UUID;
 
-import org.springframework.data.annotation.CreatedDate;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

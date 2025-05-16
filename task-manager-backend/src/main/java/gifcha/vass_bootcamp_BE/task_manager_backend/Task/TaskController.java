@@ -9,37 +9,30 @@ import java.util.UUID;
 @RequestMapping("/api/tasks")
 public class TaskController {
 
-    @Autowired
-    private TaskRepository TaskRepository;
+	@Autowired TaskService taskService;
 
     @GetMapping
     public List<Task> getAllTasks() {
-        return TaskRepository.findAll();
+		return taskService.getTaskList();
     }
 
     @GetMapping("/{id}")
     public Task getTaskById(@PathVariable UUID id) {
-        return TaskRepository.findById(id).orElseThrow();
-    }
+        return taskService.getTaskById(id);
+	}
 
     @PostMapping
-    public Task createTask(@RequestBody Task task) {
-        return TaskRepository.save(task);
+    public Task addTask(@RequestBody Task task) {
+        return taskService.addTask(task);
     }
 
     @PutMapping("/{id}")
     public Task updateTask(@PathVariable UUID id, @RequestBody Task updatedTask) {
-        Task task = TaskRepository.findById(id).orElseThrow();
-        task.setTitle(updatedTask.getTitle());
-        task.setDescription(updatedTask.getDescription());
-        task.setStatus(updatedTask.getStatus());
-        task.setType(updatedTask.getType());
-        task.setCreatedon(updatedTask.getCreatedon());
-        return TaskRepository.save(task);
+		return updateTask(id, updatedTask);
     }
 
     @DeleteMapping("/{id}")
     public void deleteTask(@PathVariable UUID id) {
-        TaskRepository.deleteById(id);
+		taskService.deleteTaskById(id);
     }
 }
