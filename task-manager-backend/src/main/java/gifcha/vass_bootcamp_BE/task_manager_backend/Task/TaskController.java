@@ -1,6 +1,5 @@
 package gifcha.vass_bootcamp_BE.task_manager_backend.Task;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
@@ -9,7 +8,11 @@ import java.util.UUID;
 @RequestMapping("/api/tasks")
 public class TaskController {
 
-	@Autowired TaskService taskService;
+	private TaskService taskService;
+
+	public TaskController(TaskService taskService) {
+		this.taskService = taskService;
+	}
 
     @GetMapping
     public List<Task> getAllTasks() {

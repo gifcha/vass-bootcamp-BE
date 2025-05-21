@@ -2,13 +2,16 @@ package gifcha.vass_bootcamp_BE.task_manager_backend.Task;
 
 import java.util.List;
 import java.util.UUID;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TaskService {
-	@Autowired
+
 	private TaskRepository taskRepository;
+
+	public TaskService(TaskRepository taskRepository) {
+		this.taskRepository = taskRepository;
+	}
 
     Task addTask(Task task) {
         return taskRepository.save(task);
