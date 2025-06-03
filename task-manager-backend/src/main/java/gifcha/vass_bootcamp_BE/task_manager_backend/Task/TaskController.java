@@ -35,7 +35,8 @@ public class TaskController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteTask(@PathVariable UUID id) {
-		taskService.deleteTaskById(id);
+    public List<Task> deleteTask(@PathVariable UUID id) {
+		// returns updated task list after deletion
+		return taskService.deleteTaskById(id);
     }
 }
