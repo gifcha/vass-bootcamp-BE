@@ -35,7 +35,8 @@ public class TaskService {
         return taskRepository.save(task);
 	}
 
-    void deleteTaskById(UUID id) {
+    List<Task> deleteTaskById(UUID id) {
         taskRepository.deleteById(id);
+		return this.getTaskList();
 	}
 }

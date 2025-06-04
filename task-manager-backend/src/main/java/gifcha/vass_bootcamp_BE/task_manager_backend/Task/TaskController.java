@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/tasks")
 public class TaskController {
@@ -35,7 +36,8 @@ public class TaskController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteTask(@PathVariable UUID id) {
-		taskService.deleteTaskById(id);
+    public List<Task> deleteTask(@PathVariable UUID id) {
+		// returns updated task list after deletion
+		return taskService.deleteTaskById(id);
     }
 }
