@@ -32,7 +32,7 @@ public class TaskController {
 
     @PutMapping("/{id}")
     public Task updateTask(@PathVariable UUID id, @RequestBody Task updatedTask) {
-		return updateTask(id, updatedTask);
+		return this.taskService.updateTask(id, updatedTask);
     }
 
     @DeleteMapping("/{id}")
