@@ -3,10 +3,13 @@ package gifcha.vass_bootcamp_BE.task_manager_backend.Task;
 import java.util.Date;
 import java.util.UUID;
 
+import gifcha.vass_bootcamp_BE.task_manager_backend.User.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 
@@ -22,16 +25,18 @@ public class Task {
     private String status;
     private String type;
     private Date createdon = new Date();
+	private String assignedto;
 
     // Constructors
     public Task() {}
 
-    public Task(UUID id, String title, String description, String status, String type) {
+    public Task(UUID id, String title, String description, String status, String type, String assignedto) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.status = status;
         this.type = type;
+		this.assignedto = assignedto;
     }
 
     // Getters and Setters
@@ -82,4 +87,12 @@ public class Task {
     public void setCreatedon(Date createdOn) {
         this.createdon = createdOn;
     }
+
+	public void setAssignedto(String assignedto) {
+		this.assignedto = assignedto;
+	}
+
+	public String getAssignedto() {
+		return assignedto;
+	}
 }
