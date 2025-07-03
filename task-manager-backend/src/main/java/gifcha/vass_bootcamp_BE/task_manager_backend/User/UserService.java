@@ -6,6 +6,8 @@ import java.util.UUID;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class UserService {
 
@@ -24,7 +26,8 @@ public class UserService {
 	}
 
 	User getUserById(UUID id) {
-        return userRepository.findById(id).orElseThrow();
+        return userRepository.findById(id)
+			.orElseThrow(() -> new EntityNotFoundException("User not found with ID: " + id));
 	}
 
     List<UserDTO> getUserList() {
@@ -34,7 +37,7 @@ public class UserService {
 	}
 
     User updateUser(UUID id, User updatedUser) {
-        User user = userRepository.findById(id).orElseThrow();
+        User user = getUserById(id);
         user.setUsername(updatedUser.getUsername());
         user.setPassword(updatedUser.getPassword());
         user.setFirstName(updatedUser.getFirstName());
