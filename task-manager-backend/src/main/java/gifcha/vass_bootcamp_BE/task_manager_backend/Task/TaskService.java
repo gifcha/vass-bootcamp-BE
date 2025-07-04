@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.UUID;
 import org.springframework.stereotype.Service;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class TaskService {
 
@@ -22,11 +24,12 @@ public class TaskService {
 	}
 
 	Task getTaskById(UUID id) {
-        return taskRepository.findById(id).orElseThrow();
+        return taskRepository.findById(id)
+			.orElseThrow(() -> new EntityNotFoundException("Task not found with ID: " + id));
 	}
 
     Task updateTask(UUID id, Task updatedTask) {
-        Task task = taskRepository.findById(id).orElseThrow();
+        Task task = getTaskById(id);
         task.setTitle(updatedTask.getTitle());
         task.setDescription(updatedTask.getDescription());
         task.setStatus(updatedTask.getStatus());
