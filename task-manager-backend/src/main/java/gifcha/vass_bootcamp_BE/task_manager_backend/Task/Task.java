@@ -24,8 +24,7 @@ public class Task {
     private Date createdon = new Date();
 
     // Constructors
-    public Task() {
-    }
+    public Task() {}
 
     public Task(UUID id, String title, String description, String status, String type) {
         this.id = id;
