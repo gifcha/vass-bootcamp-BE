@@ -35,6 +35,7 @@ public class TaskService {
         task.setStatus(updatedTask.getStatus());
         task.setType(updatedTask.getType());
         task.setCreatedon(updatedTask.getCreatedon());
+		task.setAssignedto(updatedTask.getAssignedto());
         return taskRepository.save(task);
 	}
 
