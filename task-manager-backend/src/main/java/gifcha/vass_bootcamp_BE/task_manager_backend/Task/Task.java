@@ -16,83 +16,83 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "tasks")
 public class Task {
-    @Id
-	@GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  private UUID id;
 
-    private String title;
-    private String description;
-    private String status;
-    private String type;
-    private Date createdon = new Date();
-	private String assignedto;
+  private String title;
+  private String description;
+  private String status;
+  private String type;
+  private Date createdOn = new Date();
+  private String assignedTo;
 
-    // Constructors
-    public Task() {}
+  // Constructors
+  public Task() {}
 
-    public Task(UUID id, String title, String description, String status, String type, String assignedto) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.status = status;
-        this.type = type;
-		this.assignedto = assignedto;
-    }
+  public Task(UUID id, String title, String description, String status, String type, String assignedTo) {
+    this.id = id;
+    this.title = title;
+    this.description = description;
+    this.status = status;
+    this.type = type;
+    this.assignedTo = assignedTo;
+  }
 
-    // Getters and Setters
-    public UUID getId() {
-        return id;
-    }
+  // Getters and Setters
+  public UUID getId() {
+    return id;
+  }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
+  public void setId(UUID id) {
+    this.id = id;
+  }
 
-    public String getTitle() {
-        return title;
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public String getStatus() {
-        return status;
-    }
+  public String getStatus() {
+    return status;
+  }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+  public void setStatus(String status) {
+    this.status = status;
+  }
 
-    public String getType() {
-        return type;
-    }
+  public String getType() {
+    return type;
+  }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+  public void setType(String type) {
+    this.type = type;
+  }
 
-    public Date getCreatedon() {
-        return createdon;
-    }
+  public Date getCreatedOn() {
+    return createdOn;
+  }
 
-    public void setCreatedon(Date createdOn) {
-        this.createdon = createdOn;
-    }
+  public void setCreatedOn(Date createdOn) {
+    this.createdOn = createdOn;
+  }
 
-	public void setAssignedto(String assignedto) {
-		this.assignedto = assignedto;
-	}
+  public void setAssignedTo(String assignedTo) {
+    this.assignedTo = assignedTo;
+  }
 
-	public String getAssignedto() {
-		return assignedto;
-	}
+  public String getAssignedTo() {
+    return assignedTo;
+  }
 }
