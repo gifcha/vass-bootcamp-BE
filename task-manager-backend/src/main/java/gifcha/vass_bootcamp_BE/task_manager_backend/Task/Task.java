@@ -3,13 +3,11 @@ package gifcha.vass_bootcamp_BE.task_manager_backend.Task;
 import java.util.Date;
 import java.util.UUID;
 
-import gifcha.vass_bootcamp_BE.task_manager_backend.User.User;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 
@@ -24,7 +22,11 @@ public class Task {
   private String description;
   private String status;
   private String type;
+
+  @Column(name = "created_on")
   private Date createdOn = new Date();
+
+  @Column(name = "assigned_to")
   private String assignedTo;
 
   // Constructors
