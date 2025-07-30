@@ -3,96 +3,98 @@ package gifcha.vass_bootcamp_BE.task_manager_backend.Task;
 import java.util.Date;
 import java.util.UUID;
 
-import gifcha.vass_bootcamp_BE.task_manager_backend.User.User;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 
 @Entity
 @Table(name = "tasks")
 public class Task {
-    @Id
-	@GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  private UUID id;
 
-    private String title;
-    private String description;
-    private String status;
-    private String type;
-    private Date createdon = new Date();
-	private String assignedto;
+  private String title;
+  private String description;
+  private String status;
+  private String type;
 
-    // Constructors
-    public Task() {}
+  @Column(name = "created_on")
+  private Date createdOn = new Date();
 
-    public Task(UUID id, String title, String description, String status, String type, String assignedto) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.status = status;
-        this.type = type;
-		this.assignedto = assignedto;
-    }
+  @Column(name = "assigned_to")
+  private String assignedTo;
 
-    // Getters and Setters
-    public UUID getId() {
-        return id;
-    }
+  // Constructors
+  public Task() {}
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
+  public Task(UUID id, String title, String description, String status, String type, String assignedTo) {
+    this.id = id;
+    this.title = title;
+    this.description = description;
+    this.status = status;
+    this.type = type;
+    this.assignedTo = assignedTo;
+  }
 
-    public String getTitle() {
-        return title;
-    }
+  // Getters and Setters
+  public UUID getId() {
+    return id;
+  }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  public void setId(UUID id) {
+    this.id = id;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-    public String getStatus() {
-        return status;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public String getType() {
-        return type;
-    }
+  public String getStatus() {
+    return status;
+  }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+  public void setStatus(String status) {
+    this.status = status;
+  }
 
-    public Date getCreatedon() {
-        return createdon;
-    }
+  public String getType() {
+    return type;
+  }
 
-    public void setCreatedon(Date createdOn) {
-        this.createdon = createdOn;
-    }
+  public void setType(String type) {
+    this.type = type;
+  }
 
-	public void setAssignedto(String assignedto) {
-		this.assignedto = assignedto;
-	}
+  public Date getCreatedOn() {
+    return createdOn;
+  }
 
-	public String getAssignedto() {
-		return assignedto;
-	}
+  public void setCreatedOn(Date createdOn) {
+    this.createdOn = createdOn;
+  }
+
+  public void setAssignedTo(String assignedTo) {
+    this.assignedTo = assignedTo;
+  }
+
+  public String getAssignedTo() {
+    return assignedTo;
+  }
 }
