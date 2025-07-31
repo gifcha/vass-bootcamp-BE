@@ -27,12 +27,12 @@ public class Task {
   private Date createdOn = new Date();
 
   @Column(name = "assigned_to")
-  private String assignedTo;
+  private UUID assignedTo;
 
   // Constructors
   public Task() {}
 
-  public Task(UUID id, String title, String description, String status, String type, String assignedTo) {
+  public Task(UUID id, String title, String description, String status, String type, UUID assignedTo) {
     this.id = id;
     this.title = title;
     this.description = description;
@@ -90,11 +90,11 @@ public class Task {
     this.createdOn = createdOn;
   }
 
-  public void setAssignedTo(String assignedTo) {
+  public void setAssignedTo(UUID assignedTo) {
     this.assignedTo = assignedTo;
   }
 
-  public String getAssignedTo() {
+  public UUID getAssignedTo() {
     return assignedTo;
   }
 }
