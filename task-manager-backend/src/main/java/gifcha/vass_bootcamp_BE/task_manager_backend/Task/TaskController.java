@@ -9,35 +9,35 @@ import java.util.UUID;
 @RequestMapping("/api/tasks")
 public class TaskController {
 
-	private final TaskService taskService;
+  private final TaskService taskService;
 
-	public TaskController(TaskService taskService) {
-		this.taskService = taskService;
-	}
+  public TaskController(TaskService taskService) {
+    this.taskService = taskService;
+  }
 
-    @GetMapping
-    public List<Task> getAllTasks() {
-		return taskService.getTaskList();
-    }
+  @GetMapping
+  public List<Task> getAllTasks() {
+    return taskService.getTaskList();
+  }
 
-    @GetMapping("/{id}")
-    public Task getTaskById(@PathVariable UUID id) {
-        return taskService.getTaskById(id);
-	}
+  @GetMapping("/{id}")
+  public Task getTaskById(@PathVariable UUID id) {
+    return taskService.getTaskById(id);
+  }
 
-    @PostMapping
-    public Task addTask(@RequestBody Task task) {
-        return taskService.addTask(task);
-    }
+  @PostMapping
+  public Task addTask(@RequestBody Task task) {
+    return taskService.addTask(task);
+  }
 
-    @PutMapping("/{id}")
-    public Task updateTask(@PathVariable UUID id, @RequestBody Task updatedTask) {
-		return this.taskService.updateTask(id, updatedTask);
-    }
+  @PutMapping("/{id}")
+  public Task updateTask(@PathVariable UUID id, @RequestBody Task updatedTask) {
+    return this.taskService.updateTask(id, updatedTask);
+  }
 
-    @DeleteMapping("/{id}")
-    public List<Task> deleteTask(@PathVariable UUID id) {
-		// returns updated task list after deletion
-		return taskService.deleteTaskById(id);
-    }
+  @DeleteMapping("/{id}")
+  public List<Task> deleteTask(@PathVariable UUID id) {
+    // returns updated task list after deletion
+    return taskService.deleteTaskById(id);
+  }
 }
