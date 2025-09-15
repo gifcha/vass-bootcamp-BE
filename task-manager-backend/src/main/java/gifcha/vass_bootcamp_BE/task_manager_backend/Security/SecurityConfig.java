@@ -30,11 +30,14 @@ public class SecurityConfig {
 			.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // No sessions
 			.authorizeHttpRequests(auth -> auth
 				.requestMatchers("/api/auth/login").permitAll()
+				.requestMatchers("/api/auth/register").permitAll()
 				.requestMatchers(HttpMethod.GET, "/api/users").permitAll()
 				.requestMatchers(HttpMethod.POST, "/api/users").permitAll()
-				.requestMatchers(HttpMethod.GET, "/api/tasks").permitAll()
+        .requestMatchers("/api/auth/is-valid").permitAll()
 				.anyRequest().authenticated()
 		)
+    .formLogin(form -> form.disable())  // disable HTML form login
+    .httpBasic(basic -> basic.disable()) // disable HTTP Basic auth
 		.addFilterBefore(jwtAuthFilter, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class);
 
 		return http.build();
