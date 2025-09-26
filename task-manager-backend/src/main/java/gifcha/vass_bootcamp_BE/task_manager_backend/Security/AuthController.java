@@ -19,7 +19,6 @@ import gifcha.vass_bootcamp_BE.task_manager_backend.User.UserService;
 import jakarta.servlet.http.HttpServletResponse;
 
 
-@CrossOrigin(origins = "https://localhost:4200",  allowCredentials = "true")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {

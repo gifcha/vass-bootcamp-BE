@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-@CrossOrigin(origins = "https://localhost:4200",  allowCredentials = "true")
 @RestController
 @RequestMapping("/api/tasks")
 public class TaskController {
