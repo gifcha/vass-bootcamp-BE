@@ -7,6 +7,7 @@ import io.jsonwebtoken.Jwts.SIG;
 import jakarta.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseCookie;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +25,9 @@ public class JwtUtil {
 
   @Value("${app.token.expiration.ms}")
   private long tokenExpirationTime; // set to 2 hours
+
+  @Value("${app.cookie.expiration.sec}")
+  private long cookieExpirationTime;
 
   @PostConstruct
   public void init() {
@@ -69,7 +73,25 @@ public class JwtUtil {
   }
 
   public boolean validateToken(String token, UserDetails userDetails) {
-    String username = extractUsername(token);
-    return username.equals(userDetails.getUsername());
+    try {
+      String username = extractUsername(token);
+      return username.equals(userDetails.getUsername());
+    }
+    catch (Exception e) {
+      return false;
+    }
+  }
+
+  public ResponseCookie createCookie(String token) {
+    ResponseCookie cookie = ResponseCookie.from("Auth-Token", token)
+      .httpOnly(true)
+      .sameSite("None")
+      .secure(true)
+      .path("/")
+      .maxAge(cookieExpirationTime) // 1 hour
+      .partitioned(true)
+      .build();
+
+    return cookie;
   }
 }
